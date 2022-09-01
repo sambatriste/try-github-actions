@@ -27,7 +27,7 @@ jobs:
           prCommentSaveOld: true
 
       - name: "Copy Report HTML"
-        run: cp ${{ github.workspace }}/tmp/artifact/report-*.html ${{ github.workspace }}/public/
+        run: cp ${{ github.workspace }}/tmp/artifacts/report-*.html ${{ github.workspace }}/public/
 
       - name: "Publish Report HTML"
         uses: peaceiris/actions-gh-pages@v3
