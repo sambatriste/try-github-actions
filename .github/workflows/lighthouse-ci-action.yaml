@@ -12,6 +12,9 @@ jobs:
       with:
         outputDirectory: ${{ github.workspace }}/tmp/artifacts
         urls: 'https://fintan847816967.wpcomstaging.com/'
+        device: 'all'
+        prCommentEnabled: true
+        prCommentSaveOld: true
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
