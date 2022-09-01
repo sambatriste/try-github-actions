@@ -1,0 +1,38 @@
+name: Lighthouse (develop)
+on:
+  push:
+    branches:
+      - "develop"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+      - uses: actions/checkout@master
+
+      - name: "Prepare"
+      - run:  |
+          mkdir -p ${{ github.workspace }}/tmp/artifacts
+          mkdir -p ${{ github.workspace }}/public
+
+      - name: "Lighthouse"
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          outputDirectory: ${{ github.workspace }}/tmp/artifacts
+          urls: 'https://fintan847816967.wpcomstaging.com/'
+          device: 'all'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+          prCommentEnabled: true
+          prCommentSaveOld: true
+
+      - name: "Copy Report HTML"
+        shell: bash
+        run: cp ${{ github.workspace }}/tmp/artifact/report-*.html ${{ github.workspace }}/public/
+
+      - name: "Publish Report HTML"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
