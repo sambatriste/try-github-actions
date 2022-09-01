@@ -1,4 +1,4 @@
-name: Lighthouse (develop)
+name: Lighthouse-develop
 on:
   push:
     branches:
