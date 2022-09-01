@@ -27,7 +27,6 @@ jobs:
           prCommentSaveOld: true
 
       - name: "Copy Report HTML"
-        shell: bash
         run: cp ${{ github.workspace }}/tmp/artifact/report-*.html ${{ github.workspace }}/public/
 
       - name: "Publish Report HTML"
